@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>卒研 実験モック（同意～選択～送信 全版）</title>
+  <title>卒業研究 実験</title>
   <style>
     :root { --bg:#fff; --ink:#111; --muted:#666; --line:#e6e6e6; --primary:#2563eb; --danger:#d11a2a; --card:#fff; --shadow:0 2px 10px rgba(0,0,0,.06); --radius:14px; }
     html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; }
@@ -45,7 +45,7 @@
         <div class="badge">同意・説明</div>
         <p class="lead">
           本研究の目的は、<strong>価格</strong>と<strong>過去の経験</strong>という
-          2つの環境要因が消費者の選択行動に及ぼす影響を比較・検討することです。<br>
+          2つの環境要因が消費者の選択行動に及ぼす影響を検討することです。<br>
           本実験では、7つの商品を画面で順に確認し、<strong>最も購入したいと思うものを1つ選ぶ</strong>タスクを2回行います。<br>
           途中で中止しても構いません。取得データは匿名で扱い、研究以外の目的には使用しません。
         </p>
@@ -325,7 +325,7 @@
     $('#title').textContent = '商品選択（ブロック①）';
     $('#sel1Lead').innerHTML =
       `これから７つの商品を順にご覧ください。<br>最も購入したいと思う商品を１つ選んでください。<br>
-       <span class="lead">カテゴリ：${jpCat(condition.block1)}　画像はわざと表示してません</span>`;
+       <span class="lead">カテゴリ：${jpCat(condition.block1)}　画像はわざと表示してません。</span>`;
     show('#selection1');
     renderList('#list1', condition.block1, condition.order, async (item)=>{
       const { rt, scrollAmount } = stopMeasure();
@@ -405,6 +405,7 @@
 </script>
 </body>
 </html>
+
 
 
 
