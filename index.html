@@ -245,25 +245,29 @@
 
   // ====== 送信（CORS 正式対応） ======
   async function sendLog(payload){
-    try {
-      const res = await fetch(GAS_ENDPOINT, {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        keepalive: true
-      });
-      if (res.ok) {
-        toast('データ送信しました');
-      } else {
-        console.error('送信失敗 status=', res.status);
-        toast('送信エラー（再試行してください）');
-      }
-    } catch (err) {
-      console.error('送信エラー:', err);
-      toast('送信エラー（ネットワーク）');
+  // text/plain の Blob にすると “シンプルリクエスト” 扱いでプリフライトが出ません
+  const body = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
+
+  try {
+    // ページ遷移中でも確実に飛ばせるように、使える環境では sendBeacon を優先
+    if (navigator.sendBeacon) {
+      const ok = navigator.sendBeacon(GAS_ENDPOINT, body);
+      if (ok) { toast('データ送信しました'); return; }
+      // 失敗時は fetch フォールバック
     }
+    await fetch(GAS_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',     // ← プリフライト回避のキモ
+      body                 // ← Content-Type ヘッダは付けない（自動で text/plain になる）
+      // ヘッダは一切付けないこと！（付けるとプリフライトが発生）
+    });
+    toast('データ送信しました');
+  } catch (e) {
+    console.error(e);
+    toast('送信エラー');
   }
+}
+
 
   async function sendRow(row) {
     const payload = Object.assign({
@@ -398,5 +402,6 @@
 </script>
 </body>
 </html>
+
 
 
