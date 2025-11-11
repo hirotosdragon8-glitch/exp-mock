@@ -44,7 +44,7 @@
       <div class="card">
         <div class="badge">同意・説明</div>
         <p class="lead">
-          本研究の目的は、<strong>価格提示順序（係留効果）</strong>と<strong>過去の報酬経験（強化履歴）</strong>という
+          本研究の目的は、<strong>価格</strong>と<strong>過去の経験</strong>という
           2つの環境要因が消費者の選択行動に及ぼす影響を比較・検討することです。<br>
           本実験では、7つの商品を画面で順に確認し、<strong>最も購入したいと思うものを1つ選ぶ</strong>タスクを2回行います。<br>
           途中で中止しても構いません。取得データは匿名で扱い、研究以外の目的には使用しません。
@@ -83,20 +83,20 @@
           これから7つの商品を<strong>縦スクロール</strong>で確認できます。<br>
           各商品には画像・説明・価格が表示されます。最も購入したいと思う商品を1つ選び、
           <strong>「この商品にする」</strong>ボタンを押してください。<br>
-          並び順（高→低 または 低→高）は画面右上に表示されます。<br>
           <em>練習試行はありません。</em>
         </p>
         <button id="startBlock1" class="btn">ブロック①を開始</button>
       </div>
     </section>
 
-    <!-- ④ ブロック①（強化なし） -->
+    <!-- ④ ブロック① -->
     <section id="selection1" class="view">
       <div class="card">
-        <div class="badge">ブロック①（強化なし）</div>
+        <div class="badge">ブロック①</div>
         <p class="lead" id="sel1Lead">
           これから７つの商品を順にご覧ください。<br>
           最も購入したいと思う商品を１つ選んでください。
+          ※商品の画像はわざと表示していません。
         </p>
       </div>
       <div id="list1"></div>
@@ -116,7 +116,7 @@
     <!-- ⑥ 強化メッセージ（中価格アイテム） -->
     <section id="reinforcement2" class="view">
       <div class="card">
-        <div class="badge">ブロック②（強化あり・メッセージ）</div>
+        <div class="badge">ブロック②（メッセージ）</div>
         <p class="lead" id="reinforceText1">あなたは前回、◯◯カテゴリーで</p>
         <p class="lead" id="reinforceText2">
           <strong>「◯◯（中価格）」〔税込◯◯円〕</strong>を購入しました。<br>
@@ -132,10 +132,11 @@
     <!-- ⑦ ブロック②（強化あり） -->
     <section id="selection2" class="view">
       <div class="card">
-        <div class="badge">ブロック②（強化あり）</div>
+        <div class="badge">ブロック②</div>
         <p class="lead" id="sel2Lead">
           これから７つの商品を順にご覧ください。<br>
           最も購入したいと思う商品を１つ選んでください。
+          ※商品の画像はわざと表示していません。
         </p>
       </div>
       <div id="list2"></div>
@@ -146,8 +147,10 @@
       <div class="card">
         <h2 style="margin-top:0;">実験終了</h2>
         <p class="lead">
-          ご参加ありがとうございました。取得したデータは匿名化して扱います。<br>
-          強化メッセージは研究の一部として提示されたもので、実際の購入履歴ではありません。
+          ご参加ありがとうございました。<br>
+          実験中に表示された「過去に購入し満足度8/10だった商品」という情報は、
+          実際の購買経験をもとにしたものではなく、研究目的で設定された架空の情報です。
+          あなたの回答はすべて匿名で集計され、研究目的以外で使用されることはありません。
         </p>
         <p class="lead">
           関西学院大学 文学部 総合心理科学科<br>
@@ -183,31 +186,31 @@
   // ====== 商品データ ======
   const DATA = {
     rice: [
-      { id:"rice1", name:"しずく光（5kg）",  price:3000, desc:"ふっくら食感で冷めても美味しい。" },
-      { id:"rice2", name:"こだちの風（5kg）",price:3500, desc:"ほどよい粘りと香りのバランス。" },
-      { id:"rice3", name:"あおば香（5kg）",  price:4000, desc:"上品な甘みで毎日の食卓に。" },
-      { id:"rice4", name:"めぐみの粒（5kg）",price:4500, desc:"粒立ち良くバランスの良い旨み。" },
-      { id:"rice5", name:"しんまい野（5kg）",price:5000, desc:"炊き上がりはつややかで香り高い。" },
-      { id:"rice6", name:"もあさひ穂（5kg）",price:5500, desc:"コクのある味わいで満足感。" },
-      { id:"rice7", name:"ひより霞（5kg）",  price:6000, desc:"特別な日にふさわしい上質感。" }
+      { id:"rice1", name:"しずく光（5kg）",  price:3000, desc:"軽めの口当たりで、水分が少なく粒が立ちやすいタイプ。冷めてもさらっとしています。" },
+      { id:"rice2", name:"こだちの風（5kg）",price:3500, desc:"やや柔らかめの炊き上がりで、粘りがあり弁当などにも使いやすいお米です。" },
+      { id:"rice3", name:"あおば香（5kg）",  price:4000, desc:"炊き上がるとふんわり香りが立ち、ほんのりとした甘みを感じられるタイプです。" },
+      { id:"rice4", name:"めぐみの粒（5kg）",price:4500, desc:"粒がほどよく締まり、炊きあがりにムラが少ないタイプ。日常使いにも向いています。" },
+      { id:"rice5", name:"こはる野（5kg）",price:5000, desc:"もっちりとした食感で、冷めてもふっくら感を保ちやすいお米です。" },
+      { id:"rice6", name:"あさひの穂（5kg）",price:5500, desc:"一粒がやや大きく、しっかりとした噛み応え。おにぎりに適したタイプです。" },
+      { id:"rice7", name:"ひより霞（5kg）",  price:6000, desc:"表面につやがあり、炊き上がりが美しい。見た目を重視する料理に向きます。" }
     ],
     pasta: [
-      { id:"pasta1", name:"セレナ（500g）",  price:300, desc:"軽やかな食感で毎日に。" },
-      { id:"pasta2", name:"ルーチェ（500g）",price:430, desc:"ソースがよく絡む適度なコシ。" },
-      { id:"pasta3", name:"トンノ（500g）",  price:560, desc:"やさしい小麦の風味。" },
-      { id:"pasta4", name:"フェリーチェ（500g）",price:690, desc:"食感と風味のバランスが良い。" },
-      { id:"pasta5", name:"レガート（500g）",price:820, desc:"アルデンテが決まるしなやかさ。" },
-      { id:"pasta6", name:"カンツォーネ（500g）",price:950, desc:"小麦の旨味が豊かな余韻。" },
-      { id:"pasta7", name:"プリモ（500g）",  price:1080, desc:"特別な日に合うプレミアム感。" }
+      { id:"pasta1", name:"セレナ（500g）",  price:300, desc:"細めの麺で茹で時間が短く、軽い口当たり。冷製パスタにも使いやすいタイプです。" },
+      { id:"pasta2", name:"ルーチェ（500g）",price:430, desc:"やや幅のある平打ち麺。ソースがよく絡み、クリーム系にも合います。" },
+      { id:"pasta3", name:"トンノ（500g）",  price:560, desc:"小麦の香ばしさを感じられる全粒粉ブレンド。歯ごたえがやや強めです。" },
+      { id:"pasta4", name:"フェリーチェ（500g）",price:690, desc:"弾力のある食感で、トマトやオイル系ソースとよく合うパスタです。" },
+      { id:"pasta5", name:"レガート（500g）",price:820, desc:"もちもちした食感で、シンプルな味付けでも満足感があります。" },
+      { id:"pasta6", name:"カンツォーネ（500g）",price:950, desc:"太めの麺で、噛むほどに甘みを感じるタイプ。濃厚なソースと好相性です。" },
+      { id:"pasta7", name:"プリモ（500g）",  price:1080, desc:"麦の香りがしっかり感じられ、素材の風味を引き立てる高風味タイプです。" }
     ],
     olive: [
-      { id:"oil1", name:"ソラーレ（500ml）", price:400,  desc:"軽い口当たりで使いやすい。" },
-      { id:"oil2", name:"リモーネ（500ml）", price:700,  desc:"すっきりとした香りが特長。" },
-      { id:"oil3", name:"マーレ（500ml）",   price:1000, desc:"毎日の料理に合わせやすい。" },
-      { id:"oil4", name:"フィオーレ（500ml）", price:1300, desc:"香りとコクのバランスが良い。" },
-      { id:"oil5", name:"ルーナ（500ml）",    price:1600, desc:"深みのある味わいで満足感。" },
-      { id:"oil6", name:"ヴィータ（500ml）",  price:1900, desc:"サラダにも合う上質な風味。" },
-      { id:"oil7", name:"ステッラ（500ml）",  price:2200, desc:"香り高く特別な一皿に。" }
+      { id:"oil1", name:"ソラーレ（500ml）", price:400,  desc:"クセが少なく、サラダや炒め物など日常使いに向く軽い口当たりのタイプです。" },
+      { id:"oil2", name:"リモーネ（500ml）", price:700,  desc:"柔らかな風味で、パンや温野菜にも合わせやすい万能タイプ。" },
+      { id:"oil3", name:"マーレ（500ml）",   price:1000, desc:"数種類のオリーブをブレンド。苦味と香りのバランスが取れています。" },
+      { id:"oil4", name:"フィオーレ（500ml）", price:1300, desc:"口に含むと軽いフルーティーさが広がり、料理の風味を引き立てます。" },
+      { id:"oil5", name:"ルーナ（500ml）",    price:1600, desc:"まろやかなコクが特徴。パスタや肉料理などの仕上げにおすすめです。" },
+      { id:"oil6", name:"ヴィータ（500ml）",  price:1900, desc:"若いオリーブ特有の青々しい香り。香りづけとして少量でも存在感があります。" },
+      { id:"oil7", name:"ステッラ（500ml）",  price:2200, desc:"果実味とスパイシーさが調和した風味。パンにつけるだけでも香りを楽しめます。" }
     ]
   };
 
@@ -322,7 +325,7 @@
     $('#title').textContent = '商品選択（ブロック①）';
     $('#sel1Lead').innerHTML =
       `これから７つの商品を順にご覧ください。<br>最も購入したいと思う商品を１つ選んでください。<br>
-       <span class="lead">カテゴリ：${jpCat(condition.block1)}　並び：${condition.order==='high_to_low'?'高→低':'低→高'}</span>`;
+       <span class="lead">カテゴリ：${jpCat(condition.block1)}　画像はわざと表示してません</span>`;
     show('#selection1');
     renderList('#list1', condition.block1, condition.order, async (item)=>{
       const { rt, scrollAmount } = stopMeasure();
@@ -355,7 +358,7 @@
   function doReinforcement2(){
     $('#title').textContent = '前回の購入履歴';
     const middle = getMiddleItem(condition.block2);
-    $('#reinforceText1').textContent = `あなたは前回、${jpCat(condition.block2)}カテゴリーで`;
+    $('#reinforceText1').textContent = `あなたは前回、${jpCat(condition.block2)}のカテゴリーで`;
     $('#reinforceText2').innerHTML =
       `<strong>「${middle.name}」〔税込${fmt(middle.price)}円〕</strong>を購入しました。<br>
        その際の満足度は<strong>8 / 10</strong>でした。`;
@@ -370,7 +373,7 @@
     $('#title').textContent = '商品選択（ブロック②）';
     $('#sel2Lead').innerHTML =
       `これから７つの商品を順にご覧ください。<br>最も購入したいと思う商品を１つ選んでください。<br>
-       <span class="lead">カテゴリ：${jpCat(condition.block2)}　並び：${condition.order==='high_to_low'?'高→低':'低→高'}</span>`;
+       <span class="lead">カテゴリ：${jpCat(condition.block2)}　画像はわざと表示していません。</span>`;
     show('#selection2');
     renderList('#list2', condition.block2, condition.order, async (item)=>{
       const { rt, scrollAmount } = stopMeasure();
@@ -402,6 +405,7 @@
 </script>
 </body>
 </html>
+
 
 
 
